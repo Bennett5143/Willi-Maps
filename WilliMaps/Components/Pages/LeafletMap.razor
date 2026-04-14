@@ -1,5 +1,17 @@
-﻿@page "/map"
+@page "/map"
 
 <h3>Map Installation Test</h3>
 
-<RealTimeMap height="400px" width="600px"></RealTimeMap>
+<RealTimeMap Parameters="MapParameters" height="400px" width="600px"></RealTimeMap>
+
+@code {
+    private readonly RealTimeMap.LoadParameters MapParameters = new()
+    {
+        location = new RealTimeMap.Location
+        {
+            latitude = 53.5511,
+            longitude = 9.9937
+        },
+        zoomLevel = 12
+    };
+}
