@@ -14,9 +14,9 @@ namespace WilliMaps.Components.Models
 
         public string Category { get; set; }
 
-        public List<Property> Properties { get; set; }
+        //public List<Property> Properties { get; set; }
 
-        public List<OpeningTime> OpeningTimes { get; set; }
+        //public List<OpeningTime> OpeningTimes { get; set; }
 
 
     }
