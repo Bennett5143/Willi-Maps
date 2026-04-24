@@ -20,9 +20,19 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
+
+    - name: Change to WilliMaps directory
+      run: cd WilliMaps
+      
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+
+    #Build des Testprojekts (Willi-Maps-Test)
+    - name: Build Willi-Maps-Test
+      run: dotnet build ../Willi-Maps-Test/Willi-Maps-Test.csproj --no-restore --configuration Release
+
+    # Tests ausführen
+    - name: Run Tests
+      run: dotnet test ../Willi-Maps-Test/Willi-Maps-Test.csproj --no-build --configuration Release --verbosity normal
