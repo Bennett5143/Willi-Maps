@@ -1,0 +1,38 @@
+services:
+  app:
+    image: mcr.microsoft.com/dotnet/sdk:9.0
+    container_name: willimaps-app
+    working_dir: /src/WilliMaps
+    volumes:
+      - ./WilliMaps:/src/WilliMaps
+    command: >
+      sh -c "dotnet restore WilliMaps.csproj &&
+             dotnet run --project WilliMaps.csproj --urls http://0.0.0.0:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "5166:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: willimaps-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: willimaps
+      POSTGRES_USER: willimaps
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U willimaps -d willimaps"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
