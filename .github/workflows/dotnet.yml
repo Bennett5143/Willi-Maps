@@ -21,18 +21,20 @@ jobs:
       with:
         dotnet-version: 9.0.x
 
-    - name: Change to WilliMaps directory
-      run: cd WilliMaps
-      
+    # 1. Restore der Abhängigkeiten (im WilliMaps-Verzeichnis)
     - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
+      run: dotnet restore WilliMaps.sln
+      working-directory: ./WilliMaps
 
-    #Build des Testprojekts (Willi-Maps-Test)
+    # 2. Build des Hauptprojekts (im WilliMaps-Verzeichnis)
+    - name: Build WilliMaps
+      run: dotnet build WilliMaps.sln --no-restore --configuration Release
+      working-directory: ./WilliMaps
+
+    # 3. Build des Testprojekts (im Root-Verzeichnis, da die .csproj-Datei dort liegt)
     - name: Build Willi-Maps-Test
-      run: dotnet build ../Willi-Maps-Test/Willi-Maps-Test.csproj --no-restore --configuration Release
+      run: dotnet build ./Willi-Maps-Test/Willi-Maps-Test.csproj --no-restore --configuration Release
 
-    # Tests ausführen
+    # 4. Tests ausführen (im Root-Verzeichnis)
     - name: Run Tests
-      run: dotnet test ../Willi-Maps-Test/Willi-Maps-Test.csproj --no-build --configuration Release --verbosity normal
+      run: dotnet test ./Willi-Maps-Test/Willi-Maps-Test.csproj --no-build --configuration Release --verbosity normal
