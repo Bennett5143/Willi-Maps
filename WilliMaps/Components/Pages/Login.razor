@@ -1,0 +1,38 @@
+@page "/login"
+@inject AdminAuthService AuthService
+@inject NavigationManager Navigation
+
+<h3>Login Page for Admins and Moderators</h3>
+
+<div class="mb-2 text-muted">Temporary demo credentials: <code>admin / root</code></div>
+
+<form @onsubmit="HandleLogin" @onsubmit:preventDefault="true">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" class="form-control" @bind="Username" />
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control" @bind="Password" />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+@code {
+    private string Username { get; set; } = string.Empty;
+    private string Password { get; set; } = string.Empty;
+    private string ErrorMessage { get; set; } = string.Empty;
+
+    private void HandleLogin()
+    {
+        var loginOk = AuthService.TryLogin(Username, Password);
+        if (!loginOk)
+        {
+            ErrorMessage = "Invalid username or password.";
+            return;
+        }
+
+        ErrorMessage = string.Empty;
+        Navigation.NavigateTo("/map");
+    }
+}

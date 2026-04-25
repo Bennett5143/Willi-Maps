@@ -1,6 +1,22 @@
-@page "/map"
+﻿@page "/map"
+@inject AdminAuthService AuthService
+@inject NavigationManager Navigation
 
 <h3>Map Installation Test</h3>
+
+@if (AuthService.IsLoggedIn)
+{
+    <div class="mb-2 p-2 border rounded bg-light">
+        Admin mode enabled. You can access moderation features here later.
+    </div>
+    <button class="btn btn-outline-secondary mb-3" @onclick="Logout">Logout</button>
+}
+else
+{
+    <div class="mb-3">
+        <a class="btn btn-outline-primary" href="/login">Admin Login</a>
+    </div>
+}
 
 <RealTimeMap Parameters="MapParameters" height="400px" width="600px"></RealTimeMap>
 
@@ -14,4 +30,10 @@
         },
         zoomLevel = 12
     };
+
+    private void Logout()
+    {
+        AuthService.Logout();
+        Navigation.NavigateTo("/map");
+    }
 }
