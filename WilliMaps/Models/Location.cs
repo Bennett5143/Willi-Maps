@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿using NetTopologySuite.Geometries; 
 
 namespace WilliMaps.Models
 {
@@ -7,11 +7,11 @@ namespace WilliMaps.Models
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public Point Coordinates { get; set; }
+        public Point Coordinates { get; set; } = null!;
 
         // FK Category
         public int CategoryId { get; set; }
-        public string Category { get; set; } = null!;
+        public Category Category { get; set; } = null!;
 
         // FK Address
         public int AddressId { get; set; }

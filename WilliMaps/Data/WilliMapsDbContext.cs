@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using NetTopologySuite.Geometries;
 using WilliMaps.Models;
 using Location = WilliMaps.Models.Location;
+using Npgsql;
 
 namespace WilliMaps.Data
 {
@@ -36,4 +37,3 @@ namespace WilliMaps.Data
         }
     }
 }
-
