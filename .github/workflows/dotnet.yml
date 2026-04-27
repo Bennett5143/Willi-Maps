@@ -34,8 +34,9 @@ jobs:
       run: dotnet restore ./Willi-Maps-Test/Willi-Maps-Test.csproj
 
     # 4. Build des Testprojekts (Willi-Maps-Test)
-    - name: Build Willi-Maps-Test
-      run: dotnet build ./Willi-Maps-Test/Willi-Maps-Test.csproj --no-restore --configuration Release
+    # - name: Build Willi-Maps-Test
+    #  run: dotnet build ./Willi-Maps-Test/Willi-Maps-Test.csproj --no-restore --configuration Release
+    
 
     # 5. Tests ausführen
     - name: Run Tests
