@@ -1,6 +1,6 @@
-﻿namespace WilliMaps.Components.Models
+﻿namespace WilliMaps.Models.Enums
 {
-    public enum Status
+    public enum FormStatus
     {
         Open,
         Released,

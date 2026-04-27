@@ -1,4 +1,4 @@
-﻿namespace WilliMaps.Components.Models
+﻿namespace WilliMaps.Models.Enums
 { 
     public enum FormType
     {
