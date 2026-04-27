@@ -1,0 +1,26 @@
+name: Build and Test WilliMaps
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout des Repositorys
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2. .NET SDK einrichten
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0.x'  
+
+    # 3. Restore für das Hauptprojekt (WilliMaps)
+    - name: Restore WilliMaps
+      run: dotnet restore ./WilliMaps/WilliMaps.csproj
+
+    # 4 Build für Hauptprojekt
+    - name: Build WilliMaps
+      run: dotnet build ./WilliMaps/WilliMaps.csproj --no-restore
