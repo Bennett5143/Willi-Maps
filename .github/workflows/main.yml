@@ -28,6 +28,10 @@ jobs:
     # 5 Restore für Testprojekt
     - name: Restore Willi-Maps-Test
       run: dotnet restore ./Willi-Maps-Test/Willi-Maps-Test.csproj
+
+    # 5.1 Reference
+    - name: Referenz hinzufügen
+      run: dotnet reference add ./WilliMaps/WilliMaps.csproj
     
     # 6 Build für Testprojekt
     - name: Build Willi-Maps-Test
