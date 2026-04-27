@@ -29,8 +29,8 @@ jobs:
       run: dotnet build ./WilliMaps/WilliMaps.csproj --no-restore
 
     # 5 Restore für Testprojekt
-    - name: Restore Willi-Maps-Test
-      run: dotnet restore ./Willi-Maps-Test/Willi-Maps-Test.csproj
+    # - name: Restore Willi-Maps-Test
+    #  run: dotnet restore ./Willi-Maps-Test/Willi-Maps-Test.csproj
    
     # 6 Build für Testprojekt
     #- name: Build Willi-Maps-Test
