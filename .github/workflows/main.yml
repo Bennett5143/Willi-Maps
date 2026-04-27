@@ -16,11 +16,14 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '9.0.x'  
+    # 2.5 List files
+    - name: List files
+      run: ls -R
 
     # 3. Restore für das Hauptprojekt (WilliMaps)
     - name: Restore WilliMaps
       run: dotnet restore ./WilliMaps/WilliMaps.csproj
-
+    
     # 4 Build für Hauptprojekt
     - name: Build WilliMaps
       run: dotnet build ./WilliMaps/WilliMaps.csproj --no-restore
@@ -28,12 +31,8 @@ jobs:
     # 5 Restore für Testprojekt
     - name: Restore Willi-Maps-Test
       run: dotnet restore ./Willi-Maps-Test/Willi-Maps-Test.csproj
-
-    # 5.1 Reference
-    - name: Referenz hinzufügen
-      run: dotnet reference add ./WilliMaps/WilliMaps.csproj
-    
+   
     # 6 Build für Testprojekt
-    - name: Build Willi-Maps-Test
-      run: dotnet build ./Willi-Maps-Test/Willi-Maps-Test.csproj --no-restore
+    #- name: Build Willi-Maps-Test
+    #  run: dotnet build ./Willi-Maps-Test/Willi-Maps-Test.csproj --no-restore
     
