@@ -1,4 +1,6 @@
-﻿namespace WilliMaps.Models
+﻿using WilliMaps.Models.Enums;
+
+namespace WilliMaps.Models
 {
     public class Form
     {
@@ -6,7 +8,7 @@
 
         // FK Location
         public int LocationId { get; set; }
-        public Location Location { get; set; }
+        public Location Location { get; set; } = null!;
 
         public FormType Type { get; set; }
         public FormStatus Status { get; set; } = FormStatus.Open;
