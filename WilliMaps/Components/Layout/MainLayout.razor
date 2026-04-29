@@ -1,6 +1,28 @@
 ﻿@inherits LayoutComponentBase
 
-@Body
+<header class="app-header">
+    <a href="/" class="brand">Willi Maps</a>
+
+    <nav class="app-nav">
+        <AuthorizeView>
+            <Authorized>
+                <a href="/admin">Admin</a>
+                <span>@context.User.Identity?.Name</span>
+                <form method="post" action="/auth/logout" style="display:inline">
+                    <AntiforgeryToken />
+                    <button type="submit">Abmelden</button>
+                </form>
+            </Authorized>
+            <NotAuthorized>
+                <a href="/login">Anmelden</a>
+            </NotAuthorized>
+        </AuthorizeView>
+    </nav>
+</header>
+
+<main>
+    @Body
+</main>
 
 <div id="blazor-error-ui" data-nosnippet>
     An unhandled error has occurred.

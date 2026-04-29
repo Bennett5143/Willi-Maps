@@ -1,0 +1,12 @@
+@page "/admin"
+@attribute [Authorize]
+@using System.Security.Claims
+
+<PageTitle>Admin</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        <h1>Willkommen, @context.User.Identity?.Name!</h1>
+        <p>Deine Rolle: <strong>@context.User.FindFirst(ClaimTypes.Role)?.Value</strong></p>
+    </Authorized>
+</AuthorizeView>
