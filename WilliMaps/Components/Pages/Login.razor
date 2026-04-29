@@ -1,0 +1,31 @@
+@page "/login"
+
+<PageTitle>Anmelden</PageTitle>
+
+<h2>Anmelden</h2>
+
+@if (!string.IsNullOrEmpty(Error))
+{
+    <p style="color: red;">Benutzername oder Passwort falsch.</p>
+}
+
+<form method="post" action="/auth/login">
+    <AntiforgeryToken />
+
+    <div>
+        <label for="username">Benutzername</label>
+        <input id="username" name="username" type="text" required autofocus />
+    </div>
+
+    <div>
+        <label for="password">Passwort</label>
+        <input id="password" name="password" type="password" required />
+    </div>
+
+    <button type="submit">Anmelden</button>
+</form>
+
+@code {
+    [SupplyParameterFromQuery]
+    public string? Error { get; set; }
+}
